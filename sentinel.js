@@ -87,25 +87,41 @@ let endVote = new Date()
 let isVoting = false
 let maintenance = false
 let changeMinister = true
+const logo  = new AttachmentBuilder('./.data/scicorp_logo.png');
 
 //  TECH CONFIG TEST
 
-let GLOBAL_operatorID = '160755858349883392'
-let GLOBAL_guildID = '386614231853694997'
-let GLOBAL_presidentRoleName = '690123903271698495'
-let GLOBAL_ministreRoleName = '739765983845285888'
-let GLOBAL_guardianRoleName = '739766033149329468'
-let GLOBAL_channelAnnouncement = '472319778590031882'
+const GLOBAL_operatorID = '160755858349883392'
+const GLOBAL_guildID = '386614231853694997'
+const GLOBAL_presidentRoleName = '690123903271698495'
+const GLOBAL_ministreRoleName = '739765983845285888'
+const GLOBAL_guardianRoleName = '739766033149329468'
+const GLOBAL_channelAnnouncement = '472319778590031882'
 
 //  TECH CONFIG PROD 
 /*
-let GLOBAL_operatorID = '160755858349883392'
-let GLOBAL_guildID = '307260668388573186'
-let GLOBAL_presidentRoleName = 'Président'
-let GLOBAL_ministreRoleName = 'Ministre'
-let GLOBAL_guardianRoleName = 'Eternity Sentinel'
-let GLOBAL_channelAnnouncement = '307260668388573186'
+const GLOBAL_operatorID = '160755858349883392'
+const GLOBAL_guildID = '386614231853694997'
+const GLOBAL_presidentRoleName = '690123903271698495'
+const GLOBAL_ministreRoleName = '739765983845285888'
+const GLOBAL_guardianRoleName = '739766033149329468'
+const GLOBAL_channelAnnouncement = '472319778590031882'
 */
+
+const membersProfile = [
+	{
+		'id':'160755858349883392',
+		'name':'Scipio',
+		'gender':'M',
+		'profilePicUrl':''
+	},
+	{
+		'id':'160755858349883392',
+		'name':'Scipio',
+		'gender':'M',
+		'profilePicUrl':''
+	},
+]
 
 const commands = [
     new SlashCommandBuilder()
@@ -143,11 +159,21 @@ const commands = [
 
     new SlashCommandBuilder()
         .setName('changemin')
-        .setDescription('PRESIDENT - Changer de ministre 1x par mandat'),
+        .setDescription('PRESIDENT - Changer de ministre 1x par mandat')
+        .addStringOption(option =>
+            option.setName('ministre')
+                .setDescription('Mentionne la personne que tu souhaites avoir comme nouveau ministre')
+                .setRequired(true)
+        ),
 
     new SlashCommandBuilder()
         .setName('remove')
-        .setDescription('OPERATEUR - Supprime une candidature'),
+        .setDescription('OPERATEUR - Supprime une candidature')
+        .addStringOption(option =>
+            option.setName('candidat')
+                .setDescription('Mentionne le candidat à supprimer')
+                .setRequired(true)
+        ),
 
     new SlashCommandBuilder()
         .setName('forcevote')
@@ -163,31 +189,47 @@ const commands = [
 ];
 
 const beginVoteSchedule = schedule.scheduleJob(nextElection, function(){
-
+    let message
 	if(candidate.length === 0){
-		announce("Les candidatures pour ce mois sont terminées !!!\nIl n'y a pas eu assez de candidature, les élections sont donc repoussées au mois prochain")
+		message = createEmbed("Début des votes","Les candidatures pour ce mois sont terminées.\nIl n'y a pas eu aucune candidature durant ce mois, le mandat de <@" + currentPresident.id + "> est donc prolongé jusqu'au mois prochain.")
 		candidate = []
 		changeMinister = true
 	} else if (candidate.length === 1) {
+		let genderP = getMemberGender(currentPresident.id)
+
 		if(candidate[0].user.id === currentPresident.id){
-			announce("Les candidatures pour ce mois sont terminées !\nSeul le président actuel a postulé, il est donc réélu pour ce mois.")
+			let embedTxtSolo = 'ERREUR SELECTION DU GENRE - TEXTE INVALIDE'
+			embedTxtSolo = genderP === 'M' ? "Les candidatures pour ce mois sont terminées.\nSeul le président actuel a postulé, il est donc réélu pour ce mois." : false
+			embedTxtSolo = genderP === 'F' ? "Les candidatures pour ce mois sont terminées.\nSeule la présidente actuelle a postulé, elle est donc réélue pour ce mois." : false
+
+			message = createEmbed("Début des votes",embedTxtSolo)
 			candidate = []
 			changeMinister = true
 		} else {
-			announce("Les élections mensuelles commencent !\nUn seul candidat a postulé pour être président, il ou elle sera donc en confrontation avec l'actuel président")
+			let genderC = getMemberGender(candidate[0].user.id)
+			let embedTxt1 = 'ERREUR SELECTION DU GENRE - TEXTE INVALIDE'
+			embedTxt1 = genderC === 'M' ? "Un seul candidat a postulé pour être président, il sera donc en confrontation " : false
+			embedTxt1 = genderC === 'F' ? "Une seule candidate a postulé pour être présidente, elle sera donc en confrontation " : false
+			
+			let embedTxt2 = 'ERREUR SELECTION DU GENRE - TEXTE INVALIDE'
+			embedTxt2 = genderP === 'M' ? "avec l'actuel président <@" + currentPresident.id + ">" : false
+			embedTxt2 = genderP === 'F' ? "avec l'actuelle présidente <@" + currentPresident.id + ">" : false
+			
+			message = createEmbed("Début des votes","Les élections mensuelles commencent.\n" + embedTxt1 + embedTxt2)
 			let c = {
 				id: currentPresident.id,
 				username: currentPresident.username,
 				tag: currentPresident.tag
 			}
-			addCandidate(c, "Postulation générée automatiquement pour ré-election")		
+			addCandidate(c, "Candidature générée automatiquement pour ré-election")		
 			isVoting = true
 		}
 	} else {
-		announce("Les élections mensuelles commencent !")
+		message = createEmbed("Début des votes","Les élections mensuelles commencent.\nVous avez 24h pour voter. Pour cela, utilisez la commande /vote en privé. Les instructions de vote vous y seront expliquées.")
 		isVoting = true						
 	}
 
+    announce(message)
 	endVote = new Date();
 	endVote.setDate(endVote.getDate() + 1);
 	nextElection.setMonth(nextElection.getMonth() + 1);
@@ -283,14 +325,13 @@ let announce = (embed) => {
 
 let createEmbed = (titleText, contentText) => {
 
-	let logo  = new AttachmentBuilder('./.data/scicorp_logo.png');
 	let embed = new EmbedBuilder()
 		.setColor(0xC21807)
-		.setThumbnail('attachment://spinning_earth.gif')
+		//.setThumbnail('attachment://spinning_earth.gif')
 		.setAuthor({name: titleText})
 		.setDescription(contentText)
 		.setTimestamp()
-		.setFooter({text: 'Ce message vous est présenté par Sci//Corp', iconURL: 'attachment://scicorp_logo.png'});
+		.setFooter({text: 'Propriété Sci//Corp', iconURL: 'attachment://scicorp_logo.png'});
 
 	return { embeds: [embed], files: [logo] }
 }
@@ -300,6 +341,12 @@ let addCandidate = (user, desc) => {
 		'user': user,
 		'desc': desc,
 		'votes': 0
+	})
+}
+
+let getMemberGender = (id) => {
+	return membersProfile.filter(obj => {
+  		return obj.id === id
 	})
 }
 
@@ -335,18 +382,23 @@ let resolveVote = () => {
 		let winner = candidate[bestIndex].user
 		let prog = candidate[bestIndex].desc
 		let perc = candidate[bestIndex].votes
-
-		let em = createEmbed("Scrutin ", "Élection mensuelle terminée.\nNotre nouveau président est <@" + winner.id + ">, élu avec " + perc + " points.\nPour rappel, son programme :")
+		let gender = getMemberGender(winner.id)
+        
+		let embedTxt = 'ERREUR SELECTION DU GENRE - TEXTE INVALIDE'
+		embedTxt = gender === 'M' ? "Élection mensuelle terminée.\nNotre nouveau président est <@" + winner.id + ">, élu avec " + perc + " points.\nPour rappel, son programme :" : false
+		embedTxt = gender === 'F' ? "Élection mensuelle terminée.\nNotre nouvelle présidente est <@" + winner.id + ">, élue avec " + perc + " points.\nPour rappel, son programme :" : false
+		
+		let em = createEmbed("Scrutin", embedTxt)
 		announce(em)
 		console.log(winner.username + ' a été élu président')
 
 		if(guild.available){
 			guild.members.cache.forEach((m) => {
 				if (m.user.id === winner.id){
-					console.log('Role président·e ajouté à ' + winner.username)
+					console.log('Role président ajouté à ' + winner.username)
 					m.roles.add(presidentRoleName)
 				} else if (currentPresident !== undefined && m.user.id === currentPresident.id) {
-					console.log('Role président·e supprimé à ' + currentPresident.username)
+					console.log('Role président supprimé à ' + currentPresident.username)
 					m.roles.remove(presidentRoleName)
 				}
 			})
@@ -356,7 +408,7 @@ let resolveVote = () => {
 		save()
 		return true
 	} else {
-		announce("Les élections mensuelles sont terminées !!!\nIl n'y a pas eu assez de votant, les élections sont donc repoussé au mois prochain !")
+		announce("Les élections mensuelles sont terminées.\nIl n'y a eu aucun votant (???), les élections sont donc repoussées au mois prochain.")
 	}
 }
 
@@ -410,26 +462,24 @@ client.on('interactionCreate', async interaction => {
 	if (!interaction.isChatInputCommand()) return;
 
 	const { commandName } = interaction;
+        
+	let replyTxt = 'ERREUR SELECTION DU GENRE - TEXTE INVALIDE'
 
-	if(maintenance){
-		if (interaction.user.id === GLOBAL_operatorID && commandName === "toggle"){
-			maintenance = false
-			console.log('MODE MAINTENANCE INACTIF')
-			await interaction.reply('Fin du mode maintenance')
-    		setStatus();
-    		save();
-		} else {
-			await interaction.reply('Bizarre..............')
-		}
+	if(maintenance && interaction.user.id !== GLOBAL_operatorID){
+		await interaction.reply('Bot en maintenance, vous serez notifiez lors de la fin de la maintenance.')
 	} else {
 		switch (commandName) {
 			case "president":
 				maintenance ? console.log('president') : false
 
 				if(currentPresident === undefined){
-					await interaction.reply('Il n\'y a aucun président·e dans cette patrie')
+					await interaction.reply('Il n\'y a aucun président dans cette patrie')
 				} else {
-					await interaction.reply('L\'actuel·le président·e est : ' + currentPresident.tag)
+					let gender = getMemberGender(currentPresident.id)
+					replyTxt = gender === 'M' ? 'L\'actuel président est ' : false
+					replyTxt = gender === 'F' ? 'L\'actuelle présidente est ' : false
+
+					await interaction.reply(replyTxt + currentPresident.tag)
 				}
 			break;
 
@@ -439,7 +489,11 @@ client.on('interactionCreate', async interaction => {
 				if(currentMinister === undefined){
 					await interaction.reply('Il n\'y a aucun ministre dans cette patrie')
 				} else {
-					await interaction.reply('L\'actuel·le ministre est : ' + currentMinister.tag)
+					let gender = getMemberGender(currentMinister.id)
+					replyTxt = gender === 'M' ? 'L\'actuel ministre est ' : false
+					replyTxt = gender === 'F' ? 'L\'actuelle ministre est ' : false
+
+					await interaction.reply(replyTxt + currentPresident.tag)
 				}
 			break;
 
@@ -459,6 +513,9 @@ client.on('interactionCreate', async interaction => {
 
 							await interaction.reply('Changement de ministre en cours.\nAprès cela, vous ne pourrez plus changer de ministre pour ce mois.')
 							defineMinister()
+							let member = guild.members.find((m) => m.id === currentMinister.id);
+							member.roles.remove("Ministre");
+							member.roles.remove("Ministre");
 							changeMinister = false
 						}
 					}
@@ -498,7 +555,7 @@ client.on('interactionCreate', async interaction => {
 						console.log('Candidature pour ' + interaction.user.username + ' acceptée')
 						save()
 					} else {
-						await interaction.reply('Tu a déjà postulé·e pour les élections de ce mois')
+						await interaction.reply('Tu as déjà postulé·e pour les élections de ce mois')
 					}
 				}
 			break;
@@ -510,11 +567,11 @@ client.on('interactionCreate', async interaction => {
 					if(el){
 						response += el.user.tag + " : ```\n" + el.desc + "\n```"
 					} else {
-						response += "Candidat inconnu·e"
+						response += "Candidat·e inconnu·e"
 					}
 				} else {
 					if(candidate.length === 0){
-						response = "Aucun candidat pour le moment !"
+						response = "Aucun·e candidat·e pour le moment !"
 					} else {
 						if (isVoting) {	
 							response += "Pour voter, donnez les numéros des candidat·es dans l'ordre de préférence.\nDans l'exemple '\\vote 2 0 1', 2 est le·a candidat·e préféré·e tandis que 1 est le·a moins préféré·e"								
@@ -532,18 +589,66 @@ client.on('interactionCreate', async interaction => {
 			break;
 
 			case "vote":
-				await interaction.reply('Aucun vote n\'est en cours')
-				
+				if(!isVoting) {
+					await interaction.reply('Aucun vote n\'est en cours')
+				} else {
+                    let voteList = candidate
+					let voteListBulletin = []
+					const voteSelectMenu = new StringSelectMenuBuilder()
+					    .setCustomId(interaction.id)
+						.setPlaceholder('Selectionnez un candidat...')
+						.setMinValues(1)
+						.setMaxValues(1)
+						.addOptions(
+							voteList.map((c, index) => 
+						    	new StringSelectMenuOptionBuilder()
+									.setLabel(c.tag)
+									.setValue(index)
+							)
+					const actionRow = new ActionRowBuilder().addComponents(voteSelectMenu)
+					const reply = await interaction.reply({components: actionRow})
+
+					const collector = reply.createMessageComponentCollector({
+						componentType: ComponentType.StringSelect,
+						filter: (i) => i.user.id === interaction.user.id && i.customID === interaction.id,
+						time: 60_000,
+					});
+
+					collector.on('collect', (interaction) => {
+						voteListBulletin.push(interaction.values[0])
+						voteList.splice(interaction.values[0],1)
+						if(voteList.length === 0){
+
+						} else {
+							const voteSelectMenu = new StringSelectMenuBuilder()
+								.setCustomId(interaction.id)
+								.setPlaceholder('Selectionnez un candidat...')
+								.setMinValues(1)
+								.setMaxValues(1)
+								.addOptions(
+									voteList.map((c, index) => 
+										new StringSelectMenuOptionBuilder()
+											.setLabel(c.tag)
+											.setValue(index)
+									)
+							const actionRow = new ActionRowBuilder().addComponents(voteSelectMenu)
+							interaction.editReply({components: actionRow})
+						}
+					})
+				}
 			break;
 
 			case "toggle":
 				if (interaction.user.id === GLOBAL_operatorID){
-					maintenance = true
-					console.log('MODE MAINTENANCE ACTIF');
-
-					await interaction.reply("Passage en mode maintenance");
+					maintenance = !maintenance
+					if(maintenance){
+						console.log('MODE MAINTENANCE ACTIF');
+						await interaction.reply("Passage en mode maintenance");
+					} else {
+						console.log('MODE MAINTENANCE INACTIF')
+						await interaction.reply('Fin du mode maintenance')
+					}
     				setStatus();
-
 					save()
 				} else {
 					await interaction.reply("Vous n'êtes pas autorisé·e à utiliser cette commande")
@@ -551,17 +656,20 @@ client.on('interactionCreate', async interaction => {
 			break;
 
 			case 'remove':
+				const candidat = interaction.options.getString('candidat');
 				if (interaction.user.id === operatorID){
-					if (args[0]){
-						let el = candidate[args[0]]
-						if(el){
-							candidate.splice(args[0], 1);
-							console.log('Suppression du candidat ' + args[0])
-							await interaction.reply("Le·a candidat·e " + args[0] + " a été retiré de l'élection")
-							save()
-						} else {
-							await interaction.reply("Candidat·e inconnu·e")
-						}
+					let el = candidate.findIndex((cand) => cand.id = candidat.id);
+					if(el){
+						
+						console.log('Suppression du candidat ' + candidate[el].tag)
+						let gender = getMemberGender(candidate[el].id)
+						replyTxt = gender == 'M' ? "Le candidat " + candidate[el].tag + " a été retiré de l'élection" : false
+						replyTxt = gender == 'F' ? "La candidate " + candidate[el].tag + " a été retirée de l'élection" : false
+						await interaction.reply(replyTxt)
+						candidate.splice(el, 1);
+						save()
+					} else {
+						await interaction.reply("Candidat·e inconnu·e")
 					}
 				} else {
 					await interaction.reply("Vous n'êtes pas autorisé·e à utiliser cette commande")
