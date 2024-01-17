@@ -49,6 +49,8 @@ const { Client,
 		StringSelectMenuOptionBuilder,
 		ComponentType,
 		GatewayIntentBits,
+		ButtonBuilder,
+		ButtonStyle,
 		SlashCommandBuilder,  
 		Partials, 
 		ActivityType  } = require('discord.js');
@@ -77,7 +79,7 @@ if(cluster.isMaster) {
 //                             GLOBALS VARIABLES
 // ===========================================================================
 
-const token = 'NzMyOTM0NDYzMTYzNzI3OTMy.Gqyskm.xnj0XDKUZAFGX4HdAHOg17XLzmq_ZPNUQsX6SY';
+const token = '  RAZARAZ ';
 const clientId = '732934463163727932';;
 
 let currentPresident = undefined
@@ -91,6 +93,7 @@ let isVoting = false
 let maintenance = false
 let changeMinister = true
 const logo  = new AttachmentBuilder('./.data/scicorp_logo.png');
+let someoneVoting = false
 
 //  TECH CONFIG TEST
 
@@ -363,6 +366,15 @@ let checkIfAlreadyRegistered = (user) => {
 	return code
 }
 
+let countVote = (bulletin, userId) => {
+
+	bulletin.forEach((vote, i) => {
+		let iSearch = candidate.findIndex((obj) => obj.user.id === vote.user.id)
+		candidate[iSearch].votes += candidate.length - i - 1
+	})
+	voteAck.push(userId)
+}
+
 let checkIfAlreadyVoted = (user) => {
 	let code = false
 	voteAck.forEach((el) => {
@@ -416,7 +428,8 @@ let resolveVote = () => {
 }
 
 
-const client = new Client({ intents: [
+const client = new Client({ 
+	intents: [
 		GatewayIntentBits.Guilds,
 	    GatewayIntentBits.DirectMessages,
     	GatewayIntentBits.GuildMembers,                                    
@@ -424,7 +437,8 @@ const client = new Client({ intents: [
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildVoiceStates,
         GatewayIntentBits.GuildPresences],
-    'partials': [Partials.Channel]});
+    partials: [Partials.Channel]
+});
 
 client.once('ready', () => {
     console.log(`Connecté en tant que ${client.user.tag}`);
@@ -437,7 +451,7 @@ client.once('ready', () => {
             console.log('Started refreshing application (/) commands.');
 
             await rest.put(
-                Routes.applicationGuildCommands(clientId, GLOBAL_guildID),
+                Routes.applicationCommands(clientId),
                 { body: commands },
             );
 
@@ -448,10 +462,9 @@ client.once('ready', () => {
     })();
 
     // Définition du statut et de l'activité
+    load();
     setStatus();
 	maintenance ? console.log('MODE MAINTENANCE ACTIF') : false
-
-    load();
 });
 
 
@@ -517,7 +530,7 @@ client.on('interactionCreate', async interaction => {
 							await interaction.reply('Changement de ministre en cours.\nAprès cela, vous ne pourrez plus changer de ministre pour ce mois.')
 							defineMinister()
 							let member = guild.members.find((m) => m.id === currentMinister.id);
-							member.roles.remove("Ministre");
+							member.roles.add("Ministre");
 							member.roles.remove("Ministre");
 							changeMinister = false
 						}
@@ -565,38 +578,36 @@ client.on('interactionCreate', async interaction => {
 
 			case "candidats":
 				let response = ""
-				if (args[0]){
-					let el = candidate[args[0]]
-					if(el){
-						response += el.user.tag + " : ```\n" + el.desc + "\n```"
-					} else {
-						response += "Candidat·e inconnu·e"
-					}
+				if(candidate.length === 0){
+					response = "Aucun·e candidat·e pour le moment !"
 				} else {
-					if(candidate.length === 0){
-						response = "Aucun·e candidat·e pour le moment !"
-					} else {
-						if (isVoting) {	
-							response += "Pour voter, donnez les numéros des candidat·es dans l'ordre de préférence.\nDans l'exemple '\\vote 2 0 1', 2 est le·a candidat·e préféré·e tandis que 1 est le·a moins préféré·e"								
-							candidate.forEach((el, index) => {
-							response += "\n" + index + " : " + el.user.tag
-							})									
-						} else {
-							candidate.forEach((el, index) => {
-							response += "\n" + index + " : " + el.user.tag
-							})
-						}
-					}
+					candidate.forEach((el, index) => {
+						response += "\n" + index + " : " + el.user.username
+					})
 				}
 				await interaction.reply(response)
 			break;
 
 			case "vote":
-				if(!isVoting) {
+			// Check if command is in DM
+				if(interaction.channel.type !== 1) {
+					await interaction.reply('Les votes se déroulent en message privé.')
+					interaction.user.send('Merci d\'utiliser la commande /vote ici.')
+			// Check if currently voting
+				} else if(!isVoting) {
 					await interaction.reply('Aucun vote n\'est en cours')
+			// Voting process
+				} else if(checkIfAlreadyVoted(interaction.user)) {
+					await interaction.reply('Vous avez déjà votez.')
+				} else if(someoneVoting) {
+					await interaction.reply('Quelqu\'un est déjà en train de voter. Merci de retenter plus tard (le bureau de vote est trés petit).')
 				} else {
-                    let voteList = candidate
+					someoneVoting = true
+					let voteEnd = false
+					let voteList = []
+					voteList.push(...candidate)
 					let voteListBulletin = []
+
 					const voteSelectMenu = new StringSelectMenuBuilder()
 					    .setCustomId(interaction.id)
 						.setPlaceholder('Selectionnez un candidat...')
@@ -606,24 +617,74 @@ client.on('interactionCreate', async interaction => {
 							voteList.map((c, index) => 
 						    	new StringSelectMenuOptionBuilder()
 									.setLabel(c.user.username)
-									.setDescription("  - ")
-									.setValue(index)
+									.setValue("" + index)
 							)
 						)
 					const actionRow = new ActionRowBuilder().addComponents(voteSelectMenu)
-					const reply = await interaction.reply({content: "Selectionnez un candidat :", components: [actionRow]})
+					const reply = await interaction.reply({content: "**Bulletin de vote**\nVous avez demarré une instance de vote.\nLes votes au sein de l'UDSS sont pondérés, ce qui veut dire que vous allez devoir trier l'ensemble des candidats dans l'ordre de préférence. Du plus souhaité au moins souhaité.\n\nSelectionnez le ou la candidate que vous préférez :", components: [actionRow]})
 
 					const collector = reply.createMessageComponentCollector({
-						componentType: ComponentType.StringSelect,
-						filter: (i) => i.user.id === interaction.user.id && i.customID === interaction.id,
+						filter: (i) => {
+							i.deferUpdate();
+							return i.user.id === interaction.user.id && i.customId === interaction.id},
+						componentType: ComponentType.StringSelect, 
 						time: 60_000,
 					});
 
 					collector.on('collect', (collectInteraction) => {
-						voteListBulletin.push(collectInteraction.values[0])
+
+                        voteListBulletin.push(voteList[collectInteraction.values[0]])
 						voteList.splice(collectInteraction.values[0],1)
+						let updateTxt = "**Bulletin de vote**\n"
+						voteListBulletin.forEach((c, i) => updateTxt += (i+1) + ". " + c.user.username + "\n")
+
 						if(voteList.length === 0){
 
+							const confirm = new ButtonBuilder()
+								.setCustomId('confirm')
+								.setLabel('Confirmer le vote')
+								.setStyle(ButtonStyle.Success);
+
+							const cancel = new ButtonBuilder()
+								.setCustomId('cancel')
+								.setLabel('Annuler')
+								.setStyle(ButtonStyle.Danger);
+
+							const actionRow = new ActionRowBuilder()
+								.addComponents(cancel, confirm);
+
+							interaction.editReply({content: updateTxt + "\n Confirmez l'ordre de préférence des candidats ?", components: [actionRow]})
+
+							// Button Collect
+							const collectButton = reply.createMessageComponentCollector({ 
+								filter: (i) => {
+									i.deferUpdate();
+									return i.user.id === collectInteraction.user.id},
+								componentType: ComponentType.Button, 
+								time: 30_000 });
+
+							collectButton.on('collect', collectButton => {
+
+								cancel.setDisabled(true);
+								confirm.setDisabled(true);
+								const actionRow = new ActionRowBuilder()
+									.addComponents(cancel, confirm);
+								if (collectButton.customId === "cancel") {
+									interaction.editReply({content: "Vote annulé.", components: [actionRow]});
+									voteEnd = true;
+								} else {
+									countVote(voteListBulletin, interaction.user.id);
+									interaction.editReply({content: "Votre vote a bien été comptabilisé.\n\nGloire à la patrie.", components: [actionRow]});
+									console.log("Acquisition d'un vote")
+									voteEnd = true;
+									save();
+								}
+								someoneVoting = false
+							});
+
+							collectButton.on('end', collected => {
+								if(!voteEnd) someoneVoting = false;
+							});
 						} else {
 							const voteSelectMenu = new StringSelectMenuBuilder()
 								.setCustomId(interaction.id)
@@ -634,14 +695,20 @@ client.on('interactionCreate', async interaction => {
 									voteList.map((c, index) => 
 										new StringSelectMenuOptionBuilder()
 											.setLabel(c.user.username)
-											.setDescription("  - ")
-											.setValue(index)
+											.setValue("" + index)
 									)
 								)
 							const actionRow = new ActionRowBuilder().addComponents(voteSelectMenu)
-							interaction.editReply({content: "Selectionnez un candidat :", components: [actionRow]})
+
+							interaction.editReply({content: updateTxt + "\n Selectionnez le prochain candidat :", components: [actionRow]})
 						}
 					})
+
+
+					collector.on('end', collected => {
+						console.log(`Collected ${collected.size} interactions.`);
+						if(!voteEnd) someoneVoting = false;
+					});
 				}
 			break;
 
@@ -714,4 +781,4 @@ client.on('interactionCreate', async interaction => {
 
 client.login(token);
 
-}j
+}
