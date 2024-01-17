@@ -45,6 +45,9 @@ const { Client,
 		ActionRowBuilder,
 		EmbedBuilder,
 		AttachmentBuilder,
+		StringSelectMenuBuilder,
+		StringSelectMenuOptionBuilder,
+		ComponentType,
 		GatewayIntentBits,
 		SlashCommandBuilder,  
 		Partials, 
@@ -117,7 +120,7 @@ const membersProfile = [
 	},
 	{
 		'id':'160755858349883392',
-		'name':'Scipio',
+		'name':'Val',
 		'gender':'M',
 		'profilePicUrl':''
 	},
@@ -602,11 +605,13 @@ client.on('interactionCreate', async interaction => {
 						.addOptions(
 							voteList.map((c, index) => 
 						    	new StringSelectMenuOptionBuilder()
-									.setLabel(c.tag)
+									.setLabel(c.user.username)
+									.setDescription("  - ")
 									.setValue(index)
 							)
+						)
 					const actionRow = new ActionRowBuilder().addComponents(voteSelectMenu)
-					const reply = await interaction.reply({components: actionRow})
+					const reply = await interaction.reply({content: "Selectionnez un candidat :", components: [actionRow]})
 
 					const collector = reply.createMessageComponentCollector({
 						componentType: ComponentType.StringSelect,
@@ -614,9 +619,9 @@ client.on('interactionCreate', async interaction => {
 						time: 60_000,
 					});
 
-					collector.on('collect', (interaction) => {
-						voteListBulletin.push(interaction.values[0])
-						voteList.splice(interaction.values[0],1)
+					collector.on('collect', (collectInteraction) => {
+						voteListBulletin.push(collectInteraction.values[0])
+						voteList.splice(collectInteraction.values[0],1)
 						if(voteList.length === 0){
 
 						} else {
@@ -628,11 +633,13 @@ client.on('interactionCreate', async interaction => {
 								.addOptions(
 									voteList.map((c, index) => 
 										new StringSelectMenuOptionBuilder()
-											.setLabel(c.tag)
+											.setLabel(c.user.username)
+											.setDescription("  - ")
 											.setValue(index)
 									)
+								)
 							const actionRow = new ActionRowBuilder().addComponents(voteSelectMenu)
-							interaction.editReply({components: actionRow})
+							interaction.editReply({content: "Selectionnez un candidat :", components: [actionRow]})
 						}
 					})
 				}
@@ -657,16 +664,14 @@ client.on('interactionCreate', async interaction => {
 
 			case 'remove':
 				const candidat = interaction.options.getString('candidat');
-				if (interaction.user.id === operatorID){
-					let el = candidate.findIndex((cand) => cand.id = candidat.id);
-					if(el){
-						
-						console.log('Suppression du candidat ' + candidate[el].tag)
-						let gender = getMemberGender(candidate[el].id)
-						replyTxt = gender == 'M' ? "Le candidat " + candidate[el].tag + " a été retiré de l'élection" : false
-						replyTxt = gender == 'F' ? "La candidate " + candidate[el].tag + " a été retirée de l'élection" : false
+				if (interaction.user.id === GLOBAL_operatorID){
+					if(candidate[candidat]){
+						console.log('Suppression du candidat ' + candidate[candidat].tag)
+						let gender = getMemberGender(candidate[candidat].id)
+						replyTxt = gender == 'M' ? "Le candidat " + candidate[candidat].tag + " a été retiré de l'élection" : false
+						replyTxt = gender == 'F' ? "La candidate " + candidate[candidat].tag + " a été retirée de l'élection" : false
 						await interaction.reply(replyTxt)
-						candidate.splice(el, 1);
+						candidate.splice(candidat, 1);
 						save()
 					} else {
 						await interaction.reply("Candidat·e inconnu·e")
@@ -676,7 +681,7 @@ client.on('interactionCreate', async interaction => {
 				}
 			break;
 
-			case 'forceVoteTO':
+			case 'forcevote':
 				if (interaction.user.id === operatorID){
 					console.log('Scrutin enclenché manuellement')
 					voteTimeout()
@@ -691,7 +696,7 @@ client.on('interactionCreate', async interaction => {
 				}
 			break;
 
-			case 'forceElectionTO':
+			case 'forceelection':
 				if (interaction.user.id === operatorID){
 					console.log('Elections enclenchés manuellement')
 					nextElection = new Date()
