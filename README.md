@@ -1,6 +1,7 @@
 Agriculteur
-	- Pécheur 
-		○ débloque canne à pèche
+
+- Pécheur
+○ débloque canne à pèche
 		○ Augmente le loot
 	- Apiculteur
 		○ Débloque les ruches
