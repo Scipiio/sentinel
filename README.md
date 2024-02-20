@@ -2,14 +2,12 @@ Agriculteur
 	- Pécheur 
 		○ débloque canne à pèche
 		○ Augmente le loot
-		
 	- Apiculteur
 		○ Débloque les ruches
 		○ Générer plus vite du miel
 		○ Générer plus de miel
 		○ Les abeilles n'attaque plus
 		○ Possibilité de chevauché les abeilles
-
 	- Fermier
 		○ Débloque les graines complexe
 		○ Les plantes poussent plus vite
@@ -18,7 +16,6 @@ Agriculteur
 		○ Débloque Beche en or
 		○ Débloque Beche en diamant
 		○ Débloque Beche en netherite
-
 	- Eleveur
 		○ Chance de 2 bébés
 		○ Chance de ne pas utiliser blé
