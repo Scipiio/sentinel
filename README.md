@@ -1,8 +1,9 @@
 Agriculteur
-
-- Pécheur
-○ Métier pêcheur : débloque canne à pèche
+	- Pécheur
+		○ Métier pêcheur : débloque canne à pèche & crochet simple
+		○ Crochet  : Débloque les crochets intermediaires
 		○ Oeil vif : Augmente le loot
+		○ Oeil vif : Débloque la ferme à ver
 	- Apiculteur
 		○ Métier Apiculteur : Débloque les ruches
 		○ Couveuse (tier I à III) : donne 1 oeuf d'abeille
@@ -44,7 +45,7 @@ Agriculteur
 		
 
 Bâtisseur
-	- Architecte
+	- Architecte 24
 		○ Métier Architecte : Débloque les options de construction rapide de base
 		○ Portugal : Débloque trowel
 		○ Outillage : Débloque clé a molette en cuivre
@@ -129,15 +130,15 @@ Artisan
 Travail du cuir
 Travail textile
 Débloque chapeau
-- 
+- Le marchand
 - Forgeron
 	○ Débloque forge et enclume
 Débloque minecart/rail
 	○ Débloque les armures
 	○ Les réparations donne plus de solidité
 	○ Réparation gratuit en xp
-- Sorcier
-	○ Métier Sorcier : Débloque la table d'enchantement & l'alambic
+- Erudit
+	○ Métier Erudit : Débloque la table d'enchantement & l'alambic
 	○ Alchimie (I à III) : Potion par tiers
 	○ Grenaille : Débloque potions jetables
 	○ Souffle draconique : Débloque potions draconiques
@@ -146,8 +147,11 @@ Débloque minecart/rail
 	○ Ecrivain d'arcane : Enchantement sur livre
 	○ Enchantements supérieurs : Combinaison de livre sur enclume
 	○ Flèches infusées : Potion sur fleches
+	○ Artificier : Débloque les feux d'artifices
+	○ Poudre noir : Débloque la TNT
+	○ Projectile de feu : Débloque les boules de feu
 	○ Craft beacon
-	○ Craft noeuf de la mer
+	○ Craft noeud de la mer
 	○ Craft spawner nether
 	○ Craft perle de l'end
 
@@ -161,21 +165,24 @@ Aventurier
 		○ Moins d'aggro
 		○ Débloque gros bateau
 		○ Débloque bousole
-	- Guerrier
+	- Combattant
 		○ Débloque l'épée en nethrite
 		○ Plus de dégât
 		○ Plus de critique
 		○ Plus de dégat critique
-	- Archer
-		○ Dégât up 
+		○ Dégât up arc
 		○ Débloque l'arbalète
+		○ Dépeceur (I à III) : Augmente le loot sur les ennemis commun
+		○ Dépeceur Sous-terrain (I à III) : Augmente le loot sur les ennemis des caves (slimes, araignées petites, vers cailloux)
+		○ Dépeceur Sous-terrain (I à III) : Augmente le loot sur les ennemis des caves (slimes, araignées petites, vers cailloux)
   - Force de la nature
       Vie+ tier I à V
       Resistance tier I à V
       Régén tier I à V
-        
-	
-
+      Resistance au explosion tier I à III
+      Resistance au Feu tier I à III
+      Marcheur des enfers (I à III) : Permet de mieux nager dans la lave
+      Oeil d'obsidienne : Permet de mieux voir dans la lave
 Recolteur
 	- Mineur
 		○ Fortune
@@ -183,12 +190,14 @@ Recolteur
 		○ Débloque pioche or
 		○ Débloque pioche Diamant
 		○ Débloque pioche netherite
+		○ Fortune recup pierre
+		○ Débloque haut fourneau
 	- Bucheron
+		○ Métier bucheron : Débloque coupe des arbres faciles
 		○ Débloque hache en or
 		○ Débloque hache en diamant
 		○ Débloque hache en netherite
 		○ Récolte des feuilles
-		○ Débloque coupe des arbres faciles
 		○ Fortune sur tronc I à V
 		○ Plus de pommes
 		○ Bonemeal plus efficace
@@ -197,9 +206,10 @@ Recolteur
 		○ Plus de graine
 		○ Coupe les hautes herbes en zone
 		○ Fortune récup terre
-		○ Fortune recup pierre
 		○ Fortune recup sable/gravier
-
+		○ Tresor du sable : La sable a une chance de drop des loots rares
+		○ Filtrage : Le gravier a une chance de drop des loots rares
+		○ Fortune recup argile
 
 
 
