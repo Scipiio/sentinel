@@ -45,7 +45,7 @@ Agriculteur
 		
 
 Bâtisseur
-	- Architecte 24
+	- Architecte
 		○ Métier Architecte : Débloque les options de construction rapide de base
 		○ Portugal : Débloque trowel
 		○ Outillage : Débloque clé a molette en cuivre
@@ -163,8 +163,12 @@ Aventurier
 		○ Faim tombe moins vite
 		○ Plus de luck
 		○ Moins d'aggro
-		○ Débloque gros bateau
-		○ Débloque bousole
+		○ Débloque bateau
+		○ Vitesse de sprint amélioré
+		○ Débloque bousole, altimètre
+		○ Débloque bousole explorateur
+		○ Arpenteur du nether : les ghasts n'attaquent plus
+		○ Arpenteur de l'end : les endermans et les phantoms n'attaquent plus
 	- Combattant
 		○ Débloque l'épée en nethrite
 		○ Plus de dégât
@@ -174,7 +178,7 @@ Aventurier
 		○ Débloque l'arbalète
 		○ Dépeceur (I à III) : Augmente le loot sur les ennemis commun
 		○ Dépeceur Sous-terrain (I à III) : Augmente le loot sur les ennemis des caves (slimes, araignées petites, vers cailloux)
-		○ Dépeceur Sous-terrain (I à III) : Augmente le loot sur les ennemis des caves (slimes, araignées petites, vers cailloux)
+		○ Dépeceur des enfers (I à III) : Augmente le loot sur les ennemis du nether (magma slime, squelette noir, blaze, ghast)
   - Force de la nature
       Vie+ tier I à V
       Resistance tier I à V
