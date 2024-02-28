@@ -1,224 +1,49 @@
-Agriculteur
-	- Pécheur
-		○ Métier pêcheur : débloque canne à pèche & crochet simple
-		○ Crochet  : Débloque les crochets intermediaires
-		○ Oeil vif : Augmente le loot
-		○ Oeil vif : Débloque la ferme à ver
-	- Apiculteur
-		○ Métier Apiculteur : Débloque les ruches
-		○ Couveuse (tier I à III) : donne 1 oeuf d'abeille
-		○ Polenisation rapide (tier I à III) : Générer plus vite du miel
-		○ Ruche à profusion (tier I à III) : Générer plus de miel
-		○ Amis des abeilles : Les abeilles n'attaque plus
-		○ Dompteur d'abeille : Possibilité de chevauché une abeille
-	- Fermier
-		○ Métier Fermier : Permet l'utilisation des bêches et les paniers
-		○ Botanique agricole : Débloque les graines complexe
-		○ Etude des sol I : Débloque le composte
-		○ Etude des sol II : Débloque le composte organique
-		○ Fungiculture : Débloque les colonies de champignon
-		○ Spécialisation exotique : Débloque pastèque, cacao, canne à sucre, riz
-		○ Pastèque d'or : Permet d'avoir des pastèques dorées lors de la récolte d'une pastèque
-		○ Main verte (tier I à III) : Les plantes poussent plus vite
-		○ Culture du sucre (tier I à III) : Canne à sucre pousse plus haut et plus vite
-		○ Sucre de bettrave : Récolter une bettrave donne une chance de récolte du sucre
-		○ Traitement du mildiou : Moins de chance d'avoir des pommes de terre pourris
-		○ Carotte sublime : Récolter une carotte donne une chance de récolter une carotte dorée
-		○ Maître bécheur (tier I à III) : Rayon de récolte augmenté
-		○ Débloque Beche en or
-		○ Débloque Beche en diamant
-		○ Débloque Beche en netherite
-	- Eleveur
-		○ Métier éleveur : Débloque la possibilité de faire reproduire les animaux de ferme
-		○ Reproduction contrôlé : Chance de 2 bébés
-		○ Alimentation équilibré : Chance de ne pas utiliser l'aliment
-		○ Oeufs fértiles : Les œufs + de chance de générer un poule
-		○ Débloque l'auge
-		○ Pas de gaspillage I : Animaux peuvent drop des os
-		○ Pas de gaspillage II : Animaux drop plus de viande
-		○ Pas de gaspillage III : Animaux ont plus de drop rare
-		○ Eleveur canin : permet de faire reproduire les chiens
-		○ Eleveur felin : permet de faire reproduire les chats
-		○ Eleveur equestre : permet de faire reproduire les chevaux
-		○ Tonte efficace (tier I à III) : Les moutons donnent plus de laines
-		○ Teinture de mouton : Donne la possibilité de teindre un mouton
-		
-
-Bâtisseur
-	- Architecte
-		○ Métier Architecte : Débloque les options de construction rapide de base
-		○ Portugal : Débloque trowel
-		○ Outillage : Débloque clé a molette en cuivre
-		○ Bras long (tier I à III) : Augmente de 1 la portée de pose de bloc
-		○ Recyclage (tier I à III) : Chance de ne pas utiliser le bloc en le posant
-		○ Expert maçon (tier I à III) : Augmente la vitesse de pose de bloc
-		○ Architecture complexe (tier I à III) : Débloque les options de construction rapide avancé
-	- Menuiserie & Verrerie
-		○ Métier menuiserie : Débloque portes/barrière avancée
-		○ Stockage avancé : Débloque stockage : Baril, Coffres bois bizarre
-		○ Manufacture de meuble (Tier I à III) : Débloque les meubles par tier
-			§ Chaise
-			§ Bibliothèque 
-		○ Voirie champêtre : Débloque les chemins
-		○ Clôtures raffinées : Débloque les barrières avancées
-		○ Savoir-faire nipon : Débloque la palette japonaise
-		○ Soufleur de verre : Débloque la verrerie avancée
-			§ Fenetre
-			§ Verre Framed
-			§ Glass item frame
-			§ Bocaux
-	- Maçonnerie & Ferraillerie
-		○ Métier maçonnerie : Débloque les briques simple
-			§ Brique rouge
-			§ Brique pierre
-			§ Brique minerai
-		○ Muret de pierre : Débloque barrière pierre
-		○ Travail de la pierre : Débloque la scie
-		○ Couvreur : Débloque toiture
-			§ Thatch
-			§ Tuiles
-		○ Constructeur de voirie : Débloque les pavements
-		○ Façonnage avancée : Débloque les briques avancées
-			§ Sandstone
-			§ Blue nether brick
-			§ Stone variant
-			§ Netherbrick
-		○ Ferrailleur : Débloque travail des metaux
-			§ Chaudron
-			§ Grille/bar en or/fer
-			§ Industrial blocks
-	- Ingénieur
-		○ Métier Ingénieur : Débloque 
-			§ Repeater
-			§ Chute
-			§ Piston
-			§ Note block
- 		○ Voirie ferrovière : Unlock rails, rail detecteur/accelerateur
-		○ Unlock tier I :
-			§ Sticky piston
-			§ Dropeur
-			§ Entonnoir
-			§ Coffre piège
-			§ Detecteur fil
-		○ Unlock tier II
-			§ Bloc de slime
-			§ Comparator
-			§ Gravisand
-			§ Copper pipes
-			§ Dispenser
-		○ Unlock tier III
-			§ Randomizer
-			§ Ender watcher
-			§ Magnets
-			§ Observer
-		○ 
-
-Artisan
-- Cuisinier
-	○ Métier cuisinier : Débloque le couteau, recette de base de minecraft
-	○ Maître de la marmite : Débloque le melting pot et les ragouts/soupe
-	○ Maître kebabier : Débloque le mouton cuit, kebab
-	○ Street food : Débloque burger, sandwich, brochette, 
-	○ Cuisine d'Asie : Débloque rouleau printemps, bobun, soupe de nouille, nouille à l'encre
-	○ Restaurateur : Débloque ratatouille, pate bolo, salade mixe,
-	○ Survivaliste : Débloque salad du nether, bone broth, 
-	○ Préparateur de festins : débloque les festins
-	○ Patissier : Débloque le gateau, les cookies
-	○ Boisson artisanal : Débloque les boissons
-	○ Brasseur : Débloque la bière
-- Styliste
-Travail du cuir
-Travail textile
-Débloque chapeau
-- Le marchand
-- Forgeron
-	○ Débloque forge et enclume
-Débloque minecart/rail
-	○ Débloque les armures
-	○ Les réparations donne plus de solidité
-	○ Réparation gratuit en xp
-- Erudit
-	○ Métier Erudit : Débloque la table d'enchantement & l'alambic
-	○ Alchimie (I à III) : Potion par tiers
-	○ Grenaille : Débloque potions jetables
-	○ Souffle draconique : Débloque potions draconiques
-	○ Consecration divine : +35 lvl (3 utilisations)
-	○ Accumulateur de puissance (I à III) : Boost xp
-	○ Ecrivain d'arcane : Enchantement sur livre
-	○ Enchantements supérieurs : Combinaison de livre sur enclume
-	○ Flèches infusées : Potion sur fleches
-	○ Artificier : Débloque les feux d'artifices
-	○ Poudre noir : Débloque la TNT
-	○ Projectile de feu : Débloque les boules de feu
-	○ Craft beacon
-	○ Craft noeud de la mer
-	○ Craft spawner nether
-	○ Craft perle de l'end
-
-Aventurier
-	- Explorateur
-		○ Débloque Fleche Torche
-		○ Débloque la brosse (archeologie)
-		○ Débloque boomerang
-		○ Faim tombe moins vite
-		○ Plus de luck
-		○ Moins d'aggro
-		○ Débloque bateau
-		○ Vitesse de sprint amélioré
-		○ Débloque bousole, altimètre
-		○ Débloque bousole explorateur
-		○ Arpenteur du nether : les ghasts n'attaquent plus
-		○ Arpenteur de l'end : les endermans et les phantoms n'attaquent plus
-	- Combattant
-		○ Débloque l'épée en nethrite
-		○ Plus de dégât
-		○ Plus de critique
-		○ Plus de dégat critique
-		○ Dégât up arc
-		○ Débloque l'arbalète
-		○ Dépeceur (I à III) : Augmente le loot sur les ennemis commun
-		○ Dépeceur Sous-terrain (I à III) : Augmente le loot sur les ennemis des caves (slimes, araignées petites, vers cailloux)
-		○ Dépeceur des enfers (I à III) : Augmente le loot sur les ennemis du nether (magma slime, squelette noir, blaze, ghast)
-  - Force de la nature
-      Vie+ tier I à V
-      Resistance tier I à V
-      Régén tier I à V
-      Resistance au explosion tier I à III
-      Resistance au Feu tier I à III
-      Marcheur des enfers (I à III) : Permet de mieux nager dans la lave
-      Oeil d'obsidienne : Permet de mieux voir dans la lave
-Recolteur
-	- Mineur
-		○ Fortune
-		○ Chance de drop minerai dans la pierre
-		○ Débloque pioche or
-		○ Débloque pioche Diamant
-		○ Débloque pioche netherite
-		○ Fortune recup pierre
-		○ Débloque haut fourneau
-	- Bucheron
-		○ Métier bucheron : Débloque coupe des arbres faciles
-		○ Débloque hache en or
-		○ Débloque hache en diamant
-		○ Débloque hache en netherite
-		○ Récolte des feuilles
-		○ Fortune sur tronc I à V
-		○ Plus de pommes
-		○ Bonemeal plus efficace
-		○ Plus de chance de gros arbres
-	- Forestier
-		○ Plus de graine
-		○ Coupe les hautes herbes en zone
-		○ Fortune récup terre
-		○ Fortune recup sable/gravier
-		○ Tresor du sable : La sable a une chance de drop des loots rares
-		○ Filtrage : Le gravier a une chance de drop des loots rares
-		○ Fortune recup argile
-
-
-
-
-
-
-
-
+	- Explorateur : Devient explorateur
+		○ Ajoute à l'équipe explorateur
+	- Préparer l'aventure : Donne un sac à dos basique
+		○ Donne sac simple
+	- Equipement élémentaire : 
+		○ Débloque boussole
+		○ Débloque boussole de la nature
+	- Expédition en nature : Débloque le maniement de la machette
+		○ Débloque maniement machette
+		○ Débloque 
+	- Archéologue : Débloque la brosse
+	- Dépeceur (I à III) : Augmente les loots
+	- Cartographie : Donne accès aux éléments de cartographe
+		○ Explique le partage de balise
+		○ Débloque carte
+		○ Débloque block carte
+		○ Débloque carte topologique
+	- Photographe : débloque la caméra et les films simples
+	- Choix non restrictif
+		○ Navigateur : Débloque le bateau
+			§ Terre en vue ? : Débloque la longue vue
+			§ Poudre noir : débloque les canons & boulet de canon
+			§ Sloop : Débloque les sloop
+			§ Corsaire : Débloque le brigantin
+			§ Instinct du pirate : Augmente la chance
+			§ Pacte de l'océan : Les noyés n'attaquent plus
+			§ Neptune : Permet de manier les Tridents
+			§ Contrôle du souffle (I à III) : Permet de respirer plus longtemps sous l'eau
+			§ Maître-nageur (I à III) : Permet de nager plus vite
+		○ Rendez-vous en Terres inconnues : Permet de dresser un cheval
+			§ Endurance : Augmente la vitesse de sprint
+			§ Flèches éclairante : 
+			§ Chasseur de trésor (I à III) : Augmente la chance
+			§ Digestion efficace (I à III) : La faim réduit moins vite
+			§ Nutrition sauvage I : Les baies et légume simple restaure plus de faim
+			§ Nutrition sauvage II : La viande crue restaure plus de faim
+			§ Nécessaire d'escalade : Débloque les échelles et les cordes
+			§ Escaladeur : Débloque le grappin
+			§ Dresseur de loup : Débloque les chiens
+			§ Educateur canin : Permet d'xp son chien
+			§ Guerrier canin : Débloque les armures de chien
+			§ Constitution (I à III) : 
+	- Merge des 2 voies
+	- Choix non restrictif
+		○ Etude d'ingénierie : Débloque des parties d'aéronef
+			§ Aéronautique : Débloque des parties d'aéronef
+			§ Engin volant : Débloque la girouette bidule
+			§ Montgolfière : Débloque la montgolfière
+			§ Maître des Cieux : Débloque l'avion
