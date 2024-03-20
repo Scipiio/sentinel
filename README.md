@@ -1,3 +1,22 @@
+Les Patchiwos sur Sminükt
+Mineur trapu, ont toujours été obstiné pour savoir ce qu'il y avait sous leur pied. Ils ont toujours creusé, accumulé des ressources pour recreuser encore et encore. Planète avec des sites similaires à des impacts de météorite majeur.
+Village prévu sur des pentes de gisement et utilisent les glissements des terrains. C'est le plus gros site de forage, Lelektiimo, qui a réussi à atteindre le manteau magmatique de la planète 188 ans avant l'ère spatiale. Magma qui leur a permis une avancée majeure dans les alliages et la compréhenssion des sols. Depuis, chaque grande ville possède un forage profond de type IV (asthéno) pour y accueillir mineur et forge de haute technologie. 
+
+Gen Eoh Ahn 
+Long fin, constructeur de merveilles sur Tem Goh Dle
+Symplifié "Guéat"
+Faible gravité rend la manipulation de rocher simple et sans effort
+Construisent des merveilles géantes et magnifiques a travers les ages, créant des extensions et rénovant toujours sur des bâtiment dattant de plusieurs millénaires
+Ont besoin d'espace, façonnent des oeuvres d'arts pour se divertir, généralement lents, pacifistes
+Gravité et météo tellement favorable qu'ils ont construit le Mla Gah Tio, une "tour de Babel" atteignant l'espace
+Quasi uniquement de la pierre
+Ville sont généralement un immense batiment
+
+
+
+
+
+
 AGRICULTURE
 Fermier :  [Job Majeur] Le fermier consacre son activité à ses champs et à son rendement. Il apprendra à cultiver les plantes, améliorer la qualité de sa terre et s'occuper des animaux de la ferme.
 Les champs ont une infime chance de donner un oeil
