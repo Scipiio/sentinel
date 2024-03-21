@@ -2,7 +2,7 @@ LOISIR  	 PRINCIPAL	IRL	TECHNO
 cuisine  	Shaolingrad	vraie vie	Centre robotique
 Bo art 	        Delire pas peur	bonboulot	question clodo
 Belle musique	Chalon  	Paradis blanc	Epsilon
-sapologie	Gaming tout court	psycho	
+sapologie	Gaming tout court	        psycho	
 luna	        jeu copain		
 muscle			
 nsfw			
