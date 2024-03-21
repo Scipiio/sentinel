@@ -1,3 +1,14 @@
+LOISIR  	 PRINCIPAL	IRL	TECHNO
+cuisine  	Shaolingrad	vraie vie	Centre robotique
+Bo art 	   Delire pas peur	bonboulot	question clodo
+Belle musique	Chalon	Paradis blanc	Epsilon
+sapologie	Gaming tout court	psycho	
+luna	   jeu copain		
+muscle			
+nsfw			
+parking		
+
+
 Les Patchiwos sur Sminükt
 Mineur trapu, ont toujours été obstiné pour savoir ce qu'il y avait sous leur pied. Ils ont toujours creusé, accumulé des ressources pour recreuser encore et encore. Planète avec des sites similaires à des impacts de météorite majeur.
 Village prévu sur des pentes de gisement et utilisent les glissements des terrains. C'est le plus gros site de forage, Lelektiimo, qui a réussi à atteindre le manteau magmatique de la planète 188 ans avant l'ère spatiale. Magma qui leur a permis une avancée majeure dans les alliages et la compréhenssion des sols. Depuis, chaque grande ville possède un forage profond de type IV (asthéno) pour y accueillir mineur et forge de haute technologie. 
