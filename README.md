@@ -1,13 +1,47 @@
-LOISIR  	 PRINCIPAL	IRL	TECHNO
+PASSION  	 PRINCIPAL	IRL	TECHNO
 cuisine  	Shaolingrad	vraie vie	Centre robotique
 Bo art 	        Delire pas peur	bonboulot	question clodo
 Belle musique	Chalon  	Paradis blanc	Epsilon
-sapologie	Gaming tout court	        psycho	
+sapologie	Gaming tout court  psycho	
 luna	        jeu copain		
 muscle			
 nsfw			
 parking		
 
+Bonjour bonjour, c'est votre président préféré encore une fois. Je ressort d'un shooting photo où je faissait de la boxe pour vous parler du gros sujet de mon mandat : la réorganisation totale des salons du serveur. Il y a un grand besoin de ménage et de raffraichissement de tout ça. J'expose le plan en plusieurs points.
+
+Tout d'abord, il a trop de salon textuel, ça a toujours été un problème, on a déjà essayé de s'en occuper mais je pense que l'on doit continuer dans cette voie. Accessoirement, les dépendances sont toujours une réussite et permet de créer un salon pour un sujet du moment. Certains de ces salons sont même très utilisé par tout le monde, je pense à tempête orage ou bon-boulot.
+Fort de ce constat, je propose d'abord de 1, d'archivé les salons inutilisés ou redondant et de 2, intégré certains salons de dépendance au domaine public. Je propose aussi pour qu'on s'y retrouve facilement un code couleur par catégorie
+
+Vont être archivé :
+- cookie clicker et meilleur jeu du monde, fusionné dans gaming tout court
+- let's darw, fusionné avec bo art
+- parking, sujet à débat, doit-on le garder ?
+
+Plan de réorganisation :
+Administration ne bougera pas
+Domaine public :
+- Shaolingrad
+- Delire pas peur
+- chalon
+- cuisine
+- Gaming tout court
+- jeu entre copain
+Nous sommes au fond un peu tous des g@m3rs, donc je propose de l'inclure dans le domaine public
+Aussi je remarque une grande fréquentation dans la cuisine, même raison que précédemment
+La réalité : regroupant tout sujet sérieux/irl
+- vraie-vie véritable
+- bon boulot
+- psycho
+- paradis blanc
+La passion : regroupera tous les hobbies
+- bo art
+- belle musique
+- totu muscle
+- sapologie
+- tempete orage, à débattre
+- luna, à debattre
+- parking, à débattre
 
 Les Patchiwos sur Sminükt
 Mineur trapu, ont toujours été obstiné pour savoir ce qu'il y avait sous leur pied. Ils ont toujours creusé, accumulé des ressources pour recreuser encore et encore. Planète avec des sites similaires à des impacts de météorite majeur.
